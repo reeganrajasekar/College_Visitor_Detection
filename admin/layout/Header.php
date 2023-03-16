@@ -6,7 +6,7 @@
     <title>Admin</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/style.css">
-    <meta http-equiv="refresh" content="20">
+    <meta http-equiv="refresh" content="10">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/static/js/moment.js"></script>
 </head>

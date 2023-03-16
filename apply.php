@@ -2,10 +2,14 @@
 require("./admin/layout/db.php");
 
 
+$person = $_POST["person"];
+$type = $_POST["type"];
 $name = $_POST["name"];
-$reason = $_POST["reason"];
+$mobile = $_POST["mobile"];
+$address = $_POST["address"];
+$purpose = $_POST["purpose"];
 
-$sql="INSERT INTO queue(name,des,status) VALUE('$name','$reason','Waiting List')";
+$sql="INSERT INTO queue(person,type,name,mobile,address,purpose,status) VALUE('$person','$type','$name','$mobile','$address','$purpose','Waiting List')";
 if ($conn->query($sql) === TRUE) {
     $last_id = $conn->insert_id;
     if(!isset($_SESSION)) 
@@ -13,7 +17,7 @@ if ($conn->query($sql) === TRUE) {
         session_start(); 
     }
     $_SESSION["id"] = $last_id;
-    header("Location: /status.php?msg=Now you are in the queue!");
+    header("Location: /status.php");
     die();
 }else {
     header("Location: /?msg=Something went Wrong!");

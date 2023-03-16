@@ -11,8 +11,12 @@
         <thead style="text-align:center">
             <tr>
                 <th>#</th>
+                <th>Person</th>
+                <th>Catagory</th>
                 <th>Name</th>
-                <th>Reason</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Purpose</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -27,26 +31,21 @@
                     ?>
                         <tr>
                             <td style="text-align:center"><?php echo($i) ?></td>
+                            <td><?php echo($row["person"]) ?></td>
+                            <td><?php echo($row["type"]) ?></td>
                             <td><?php echo($row["name"]) ?></td>
-                            <td><?php echo($row["des"]) ?></td>
+                            <td><?php echo($row["mobile"]) ?></td>
+                            <td><?php echo($row["address"]) ?></td>
+                            <td><?php echo($row["purpose"]) ?></td>
                             <td><?php echo($row["status"]) ?></td>
                             <td style="display:flex;justify-content:space-between">
-                            <?php if($row["status"]=="Waiting List"){ ?>
                                 <form action="/admin/action/update.php" method="post">
                                     <input type="hidden" name="id" value="<?php echo($row["id"]) ?>">
-                                    <input type="hidden" name="status" value="Allowed">
+                                    <input type="text" class="form-control" name="status" required placeholder="Commend">
                                     <center>
-                                        <button class="btn btn-success">Allow</button>
+                                        <button class="btn btn-success">Send</button>
                                     </center>
-                                </form>
-                            <?php } ?>
-                                <form action="/admin/action/update.php" method="post">
-                                    <input type="hidden" name="id" value="<?php echo($row["id"]) ?>">
-                                    <input type="hidden" name="status" value="Rejected">
-                                    <center>
-                                        <button class="btn btn-danger">Reject</button>
-                                    </center>
-                                </form>
+                                </form>|
                                 <form action="/admin/action/update.php" method="post">
                                     <input type="hidden" name="id" value="<?php echo($row["id"]) ?>">
                                     <input type="hidden" name="status" value="Thank You">
@@ -61,7 +60,7 @@
             }else{
             ?>
             <tr>
-                <td style="text-align:center" colspan="5">Nothing Found</td>
+                <td style="text-align:center" colspan="9">Nothing Found</td>
             </tr>
             <?php
             }

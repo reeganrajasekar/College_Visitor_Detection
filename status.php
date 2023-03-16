@@ -13,7 +13,7 @@ $id = $_SESSION["id"];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waiting List Form</title>
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="3">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="shortcut icon" href="/static/img/logo.png">
     <style>
@@ -32,30 +32,36 @@ $id = $_SESSION["id"];
     <section class="gradient-custom h-100">
         <div class="container py-1 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card" style="border-radius: 1rem;background-color:#f5f5f5;min-height:200px">
-                        <div class="card-body p-4 text-center">
-                            <h2 class="fw-bold mb-4 text-uppercase" style="color:#051937;font-weight:800">Your Request Status</h2>
+                <div class="col-12 col-md-8 col-lg-6 col-xl-8">
+                    <div class="card" style="border-radius: 1rem;background-color:#f5f5f5;">
+                        <div class="row mt-2 px-2">
+                            <div class="col-3">
+                                <img src="/static/logo.jpg" style="width:100%" alt="" class="rounded">
+                            </div>
+                            <div class="col-9" style="height:100px;display:flex;justify-content:center;align-items:center">
+                                <h2 style="color:#a94442;text-align:center;font-size:26px;font-weight:900;">
+                                    BON SECOURS COLLEGE FOR WOMEN<br>Thanjavur
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="my-4 text-center">
+                            <h4>Your Request has been Submitted.</h4>
+                            <br>
+                            <h4>You will receive a response as Message.</h4>
+                            <br>
+                            <h4>Thank you</h4>
                             <br>
                             <?php 
                                 $result = $conn->query("SELECT * FROM queue WHERE id='$id'");
                                 while($row = $result->fetch_assoc()){
-                                    if($row["status"]=="Allowed"){
+                                    if($row["status"]=="Waiting List"){
                                     ?>
-                                        <h3 style="color:green;">Allowed</h3>
-                                    <?php
-                                    }else if($row["status"]=="Rejected"){
-                                    ?>
-                                        <h3 style="color:red;">Rejected</h3>
-                                    <?php
-                                    }else if($row["status"]=="Thank You"){
-                                    ?>
-                                        <h3 style="color:gray;">Thankyou!</h3>
-                                    <?php
+                                        <h2>Request Status : <span style="color:orange;">Waiting List</span></h2>
+                                        <?php
                                     }else{
-                                    ?>
-                                        <h3 style="color:orange;">Waiting List</h3>
-                                    <?php
+                                        ?>
+                                            <h2>Request Status : <span style="color:#a8eb12;"><?php echo($row["status"]) ?></span></h2>
+                                        <?php
                                     }
                                 }
                             ?>
@@ -71,22 +77,6 @@ $id = $_SESSION["id"];
             background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
         }
     </style>
-    <script>
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    if(urlParams.get('err')){
-        document.write("<div id='err' style='position:fixed;bottom:30px; right:30px;background-color:tomato;padding:10px;border-radius:10px;box-shadow:2px 2px 4px #aaa;color:white;font-weight:600'>"+urlParams.get('err')+"</div>")
-    }
-    setTimeout(()=>{
-        document.getElementById("err").style.display="none"
-    }, 5000)
-    if(urlParams.get('msg')){
-        document.write("<div id='msg' style='position:fixed;bottom:30px; right:30px;background-color:green;padding:10px;border-radius:10px;box-shadow:2px 2px 4px #aaa;color:white;font-weight:600'>"+urlParams.get('msg')+"</div>")
-    }
-    setTimeout(()=>{
-        document.getElementById("msg").style.display="none"
-    }, 5000)
-</script>
     
     <script src="/static/js/bootstrap.bundle.js"></script>
 </body>
